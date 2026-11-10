@@ -41,7 +41,9 @@ viết spec xóa Supplier
 ```
 Add "cứ viết đi" to skip the questions (neutral defaults + `[TBC]`).
 
-Output: `specs/<object>-<function>.md` with UC header table, Activity Flows (table + Mermaid),
+Output: a Word file in `~/Downloads` (`<Project>_<Object>_Use-Case-Specification.docx`), built on your
+company SRS template (`*System*Requirement*Specification*.docx`, kept local, never committed), plus the
+Markdown source `specs/<object>-<function>.md`. Both contain UC header table, Activity Flows (table; Mermaid in the .md only),
 Business Rules, screen descriptions, New Messages and Open Questions.
 Numbering always starts at UC 1 / BR 1 / Screen 1.
 

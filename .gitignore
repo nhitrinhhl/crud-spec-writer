@@ -4,3 +4,5 @@
 *.xlsx
 *.pptx
 *.pdf
+# Specs written from private/company source code stay local
+specs/task-crud.md

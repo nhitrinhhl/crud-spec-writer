@@ -39,6 +39,7 @@ Do not continue without it.
 | `templates/listing-screen-template.md` | View list (screen description) |
 | `templates/form-screen-template.md` | Create / Read / Update screen description, if fields are known |
 | `examples/product-view-list.md` | Reference level of detail; read before the first View list spec |
+| `scripts/md_to_srs_docx.py` | Step 5b: export the spec to .docx with the SRS template |
 
 ## The SRS is a format template, not a source of facts
 This skill is used for many different apps. The SRS docx shows the FORMAT only; its content
@@ -90,8 +91,24 @@ If the user opts out of questions ("cứ viết đi"), use the neutral defaults 
 - A UC that is not written in this spec is referred to by name only: "Refer to UC: Create <Object>."
 - Add a **New Messages** table if any new message code was introduced.
 - Mode A: add the **Source Analysis** section (`input-github.md`).
-- Save to `specs/<object>-<function>.md` (kebab-case) in the working directory unless the
-  user names another location, and show the result in chat.
+- Use the SRS heading levels (they are auto-numbered by the template):
+  `# Use Case Specifications` → `## <Object> Management` → `### Manage Use Case` → `#### UC n: …`;
+  `# Mockups Screen` → `## <Object> Management` → `### <Screen Name>`;
+  `# Appendices` → `## New Messages` / `## Source Analysis` / `## Open Questions`.
+- Write the Markdown source to `specs/<object>-<function>.md` (kebab-case) in the working directory.
+
+### 5b. Export to Word (the deliverable)
+The output the user receives is a **.docx saved in `~/Downloads`**, built on the company SRS
+template so it has its styles, numbering, header and footer.
+1. Find the template: a `*System*Requirement*Specification*.docx` in the working directory or
+   `~/Downloads` (ask the user for the path if none or several are found). Never commit or
+   publish the template — it is company-internal.
+2. Run (Python 3, standard library only):
+   `python3 <skill-dir>/scripts/md_to_srs_docx.py specs/<name>.md "<template.docx>" ~/Downloads/<Project>_<Object>_Use-Case-Specification.docx`
+3. Check it: the XML parses, `textutil -convert txt -stdout <file>` shows every UC, BR and the
+   Open Questions; on macOS `qlmanage -t -s 1400 -o <scratch> <file>` renders page 1 to look at.
+4. Tell the user the .docx path. Mermaid diagrams are not exported; the Activity Flows table is
+   in the document, and the BA draws the swimlane image from it if needed.
 
 ### 6. Verify, then close
 Invoke `superpowers:verification-before-completion`. The "verification" for a spec is:
