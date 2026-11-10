@@ -46,9 +46,10 @@ def check(path):
             if s.startswith('```'):
                 in_code = not in_code
                 continue
-            if in_code or s.startswith('>') or SKIP_LINE.search(s):
+            if in_code or s.startswith('>'):
                 continue
-            text = re.sub(r'`[^`]*`', '', line)
+            text = SKIP_LINE.sub('', line)
+            text = re.sub(r'`[^`]*`', '', text)
             text = re.sub(r'"[^"]*"|“[^”]*”', '""', text)
             # message code followed by its text, inline or in the next table cell
             text = re.sub(r'\b(?:IEM|EMSG|CFD|SCD) (?:\d+|n|<n>)\s*\|[^|]*\|', '|', text)

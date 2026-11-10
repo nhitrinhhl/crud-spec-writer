@@ -17,7 +17,7 @@ Replace every `<...>`. Delete guidance lines (starting with `>`) in the output.
 
 | **Data Source** | Retrieve all "<Object>" records satisfying:<br>- <Condition 1, e.g. [Status] is not "Closed".><br>- <Per-role condition, e.g. If {Current Login User} has role "<Role>": [Owner] is [User ID] of {Current Login User}.> |
 |---|---|
-| **Default Sorting** | Sorted by [<Field>] in <ascending/descending> order. |
+| **Default Sorting** | The system sorts records by [<Field>] in <ascending/descending> order. |
 
 > - Data Source must state per-role visibility when roles see different records.
 > - If the user gave no conditions, write `Retrieve all "<Object>" records.` (neutral default, srs-conventions.md §11).

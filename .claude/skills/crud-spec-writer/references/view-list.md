@@ -21,7 +21,7 @@ Full worked example: `examples/product-view-list.md`.
 | Step | User | System |
 |---|---|---|
 | (1) | User clicks on "<Menu Item>" in the left Navigation Pane. | |
-| (2) | | The system loads <Object> List screen with the records that satisfy the Data Source conditions, sorted by Default Sorting. |
+| (2) | | The system loads <Object> List screen with the records that satisfy the Data Source conditions and sorts them as described in Default Sorting. |
 | (2.1) | | If no record satisfies the conditions, the system displays the empty state text. |
 | (3) | User views the list. User may search, sort, change page, open an item (UC <n>: View an existing <Object>) or click on an action button (e.g. UC <n>: Create <Object>). | |
 

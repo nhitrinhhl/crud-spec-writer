@@ -20,7 +20,7 @@ UC: View an existing Product).
 | Step | User | System |
 |---|---|---|
 | (1) | User clicks on "Product" in the left Navigation Pane. | |
-| (2) | | The system loads Product List screen with the Product records that satisfy the Data Source conditions, sorted by [Product Code] in descending order. |
+| (2) | | The system loads Product List screen with the Product records that satisfy the Data Source conditions and sorts them by [Product Code] in descending order. |
 | (2.1) | | If no Product record satisfies the conditions, the system displays the empty state text. |
 | (3) | User views the list of Products. User may search, sort, change page, click on [Product Code] to open a Product (UC: View an existing Product) or click on "Create" button (UC: Create Product). | |
 
@@ -59,7 +59,7 @@ Mockup: The BA will attach the mockup.
 
 | **Data Source** | Retrieve all "Product" records satisfying:<br>- If {Current Login User} has role "System Admin": [Status] is "Active" or "Inactive".<br>- Otherwise: [Status] is "Active". |
 |---|---|
-| **Default Sorting** | Sorted by [Product Code] in descending order. |
+| **Default Sorting** | The system sorts records by [Product Code] in descending order. |
 
 | # | Component | Component Type | Description |
 |---|---|---|---|

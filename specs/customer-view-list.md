@@ -5,14 +5,14 @@
 | **Actor:** | System Admin, Sales. |
 | **Trigger:** | User clicks on "Customers" in the left Navigation Pane. [TBC] |
 | **Pre-condition:** | User logged in successfully as actor above. |
-| **Post-condition:** | The list of existing Customers is displayed. |
+| **Post-condition:** | The system displays the list of existing Customers. |
 
 **Activity Flows**
 
 | Step | User | System |
 |---|---|---|
 | (1) | User clicks on "Customers" in the left Navigation Pane. | |
-| (2) | | The system loads Customer List screen with the Customer records that satisfy the Data Source conditions, sorted by [Customer ID] in descending order. |
+| (2) | | The system loads Customer List screen with the Customer records that satisfy the Data Source conditions and sorts them by [Customer ID] in descending order. |
 | (2.1) | | If no Customer record satisfies the conditions, the system displays the empty state text. |
 | (3) | User views the list of Customers. User may search, sort, change page, click on [Customer ID] to open a Customer (UC: View an existing Customer) or click on "Create" button (UC: Create Customer). | |
 
@@ -35,7 +35,7 @@ flowchart TD
 
 | Step | BR Code | Description |
 |---|---|---|
-| (2)<br>(2.1) | **BR 1** | <u>**Screen Displaying Rules:**</u><br>The system will load screen: <<cross reference to Customer List screen>>.<br>- Data is retrieved as described in Data Source of the screen.<br>- Records are sorted by [Customer ID] in descending order.<br>- "Create" button is displayed only for the actors of UC: Create Customer.<br>- If there is no Customer record to display, the table displays the text "No data found." |
+| (2)<br>(2.1) | **BR 1** | <u>**Screen Displaying Rules:**</u><br>The system will load screen: <<cross reference to Customer List screen>>.<br>- The system retrieves data as described in Data Source of the screen.<br>- The system sorts records by [Customer ID] in descending order.<br>- The system displays "Create" button only for the actors of UC: Create Customer.<br>- If there is no Customer record to display, the table displays the text "No data found." |
 
 ---
 
@@ -47,11 +47,11 @@ flowchart TD
   - Step 2: Click on module "Customers" in Navigation Pane in the left.
 
 *Screen 1: Customer List screen*
-Mockup: to be attached.
+Mockup: The BA will attach the mockup.
 
 | **Data Source** | Retrieve all "Customer" records. |
 |---|---|
-| **Default Sorting** | Sorted by [Customer ID] in descending order. |
+| **Default Sorting** | The system sorts records by [Customer ID] in descending order. |
 
 | # | Component | Component Type | Description |
 |---|---|---|---|
