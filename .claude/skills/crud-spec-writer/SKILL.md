@@ -37,7 +37,7 @@ Use the SRS's formal style ("The system will…", "User clicks on…").
 ## Prerequisite — superpowers plugin (mandatory)
 Before anything else, check that the skills `superpowers:brainstorming` and
 `superpowers:verification-before-completion` are in your available skills list.
-If either is missing, STOP and tell the user (in their language):
+If either is missing, STOP and tell the user (in English):
 
 > This skill requires the superpowers plugin. Install it in Claude Code with
 > `/plugin install superpowers@claude-plugins-official`, restart the session, then ask again.
@@ -80,7 +80,7 @@ Create, Edit, View detail, View list, Delete/Disable.
 ### 2. Choose the input mode
 - The request contains a GitHub URL or a local source path → **Mode A**.
 - The request already gives everything required (see table below) → skip to step 4.
-- Otherwise ask ONE question (user's language), e.g.
+- Otherwise ask ONE question (in English), e.g.
   "Do you have the source code on GitHub I can read, or shall I ask you a few questions?"
   - Link given → **Mode A** (`references/input-github.md`), then Mode B for the gaps only.
   - No code → **Mode B** (`references/input-interview.md`).

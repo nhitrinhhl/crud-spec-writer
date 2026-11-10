@@ -1,3 +1,9 @@
+# Use Case Specifications
+
+## Customer Management
+
+### Manage Use Case
+
 #### UC 1: View List of existing Customers
 
 | **Objective:** | This use case allows user to view list of existing Customers. |
@@ -39,6 +45,10 @@ flowchart TD
 
 ---
 
+# Mockups Screen
+
+## Customer Management
+
 ### Customer List Screen
 
 - This screen allows System Admin and Sales to view list of existing Customers.
@@ -75,8 +85,10 @@ Mockup: The BA will attach the mockup.
 
 ---
 
-#### New Messages
+# Appendices
+
+## New Messages
 None.
 
-#### Open Questions
+## Open Questions
 1. `[TBC]` Menu item that opens this list — assumed "Customers" in the left Navigation Pane. What is it called in the app?
