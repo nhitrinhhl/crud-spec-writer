@@ -9,9 +9,30 @@ Writes CRUD use case specifications that drop straight into the company SRS
 ("<Customer Name>_<Project Name>_System Requirement Specification"), section 3 "Use Case
 Specifications", in the format of section 3.3 "Common Use Cases" (CMUC 1–5).
 
-**Language:** the user may write in Vietnamese or English. The spec output is ALWAYS English,
-in the SRS's formal style ("The system will…", "User clicks on…"). Conversation (questions,
-summaries) follows the user's language.
+## Writing rules (mandatory)
+**English only.** Write everything in English: the spec, the Word file, the questions, the
+Input Summary and every reply. The user may write in another language (e.g. Vietnamese);
+understand it, but always answer in English. The Vietnamese words in this skill's description
+only help recognise a request.
+
+**Active voice only.** Every sentence in the spec names who acts: "The system …", "User …",
+"The BA …". Never write passive sentences.
+
+| Passive (do not write) | Active (write) |
+|---|---|
+| A new Product is successfully created. | The system creates a new Product. |
+| The list of existing Products is displayed. | The system displays the list of existing Products. |
+| Data is retrieved as described in Data Source. | The system retrieves data as described in Data Source. |
+| Records are sorted by [Code] in descending order. | The system sorts records by [Code] in descending order. |
+| "Create" button is displayed only when … | The system displays "Create" button only when … |
+| [Code] is generated as PXX. | The system generates [Code] in the format PXX. |
+| If any mandatory field is left blank, … | If user leaves any mandatory field blank, … |
+| The Task is archived and its runs are cancelled. | The system archives the Task and cancels its runs. |
+
+Exceptions: UI text and message texts copied from the app or the SRS stay word for word inside
+quotes or after their code (e.g. IEM 2 This name is already existed.), and the fixed SRS
+pre-condition "User logged in successfully as actor above." stays as it is.
+Use the SRS's formal style ("The system will…", "User clicks on…").
 
 ## Prerequisite — superpowers plugin (mandatory)
 Before anything else, check that the skills `superpowers:brainstorming` and
@@ -37,9 +58,10 @@ Do not continue without it.
 | `references/delete.md` | Delete or Disable <Object> |
 | `templates/use-case-template.md` | Every UC |
 | `templates/listing-screen-template.md` | View list (screen description) |
-| `templates/form-screen-template.md` | Create / Read / Update screen description, if fields are known |
+| `templates/form-screen-template.md` | Create / Read / Update screen description, if you know the fields |
 | `examples/product-view-list.md` | Reference level of detail; read before the first View list spec |
 | `scripts/md_to_srs_docx.py` | Step 5b: export the spec to .docx with the SRS template |
+| `scripts/check_active_voice.py` | Step 6: flag passive sentences |
 
 ## The SRS is a format template, not a source of facts
 This skill is used for many different apps. The SRS docx shows the FORMAT only; its content
@@ -66,7 +88,7 @@ Create, Edit, View detail, View list, Delete/Disable.
 Required input to end up with:
 - Object; actor(s) per function; entry point (menu, or button + screen).
 - Fields/columns: name, type, mandatory, rules (max length, format, unique, value list).
-- View list: which records are shown (incl. per-role visibility), default sorting, columns,
+- View list: which records the screen shows (incl. per-role visibility), default sorting, columns,
   buttons and who can use them.
 - Delete: delete type (Recycle Bin / soft delete / permanent).
 
@@ -75,7 +97,7 @@ Never ask about numbering, pagination, search, column display or CBR1 — they a
 ### 3. Approve the Input Summary
 Play back the Input Summary (format in `input-interview.md`; with the Source Findings table
 in Mode A). Write the spec only after the user approves it or says to proceed.
-If the user opts out of questions ("cứ viết đi"), use the neutral defaults in
+If the user opts out of questions ("just write it"), use the neutral defaults in
 `srs-conventions.md` §11 and mark `[TBC]` only where no neutral default exists
 (menu name, delete type, default status).
 
@@ -88,8 +110,8 @@ If the user opts out of questions ("cứ viết đi"), use the neutral defaults 
 - View list: also fill `templates/listing-screen-template.md`.
 - Create/Edit/View detail with known fields: also fill `templates/form-screen-template.md`.
 - Number UCs, BRs and screens from 1, sequentially within the spec.
-- A UC that is not written in this spec is referred to by name only: "Refer to UC: Create <Object>."
-- Add a **New Messages** table if any new message code was introduced.
+- Refer to a UC that this spec does not contain by name only: "Refer to UC: Create <Object>."
+- Add a **New Messages** table if the spec introduces any new message code.
 - Mode A: add the **Source Analysis** section (`input-github.md`).
 - Use the SRS heading levels (they are auto-numbered by the template):
   `# Use Case Specifications` → `## <Object> Management` → `### Manage Use Case` → `#### UC n: …`;
@@ -101,17 +123,20 @@ If the user opts out of questions ("cứ viết đi"), use the neutral defaults 
 The output the user receives is a **.docx saved in `~/Downloads`**, built on the company SRS
 template so it has its styles, numbering, header and footer.
 1. Find the template: a `*System*Requirement*Specification*.docx` in the working directory or
-   `~/Downloads` (ask the user for the path if none or several are found). Never commit or
+   `~/Downloads` (ask the user for the path if you find none or several). Never commit or
    publish the template — it is company-internal.
 2. Run (Python 3, standard library only):
    `python3 <skill-dir>/scripts/md_to_srs_docx.py specs/<name>.md "<template.docx>" ~/Downloads/<Project>_<Object>_Use-Case-Specification.docx`
 3. Check it: the XML parses, `textutil -convert txt -stdout <file>` shows every UC, BR and the
    Open Questions; on macOS `qlmanage -t -s 1400 -o <scratch> <file>` renders page 1 to look at.
-4. Tell the user the .docx path. Mermaid diagrams are not exported; the Activity Flows table is
-   in the document, and the BA draws the swimlane image from it if needed.
+4. Tell the user the .docx path. The script does not export Mermaid diagrams; the document contains the
+   Activity Flows table, and the BA draws the swimlane image from it if needed.
 
 ### 6. Verify, then close
 Invoke `superpowers:verification-before-completion`. The "verification" for a spec is:
+- `python3 <skill-dir>/scripts/check_active_voice.py specs/<name>.md` reports no passive
+  sentence (rewrite every hit in active voice and run it again);
+- the spec contains no non-English text;
 - the function checklist in each loaded reference — every item covered or explicitly `N/A`;
 - the common checklist in `srs-conventions.md` §9;
 - Mode A: every value taken from code has a file:line source.
@@ -125,7 +150,8 @@ offer the short form instead of five full UCs. It refers to Common Use Cases (CM
 and lists only object-specific rules. Format: `references/srs-conventions.md` §8.
 
 ## Do not
-- Do not translate the spec into Vietnamese or mix languages in the spec.
+- Do not write any part of the spec, the questions or the replies in a language other than English.
+- Do not write passive sentences.
 - Do not repeat the standard Pagination / Search Component / View Columns Display /
   Bulk Action text — write "Refer to <section name>." and spell out deviations only.
 - Do not copy the known defects of the SRS template (`srs-conventions.md` §10).

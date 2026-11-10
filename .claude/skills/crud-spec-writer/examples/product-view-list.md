@@ -1,7 +1,7 @@
 # Example — UC 1: View List of existing Products
 
 Reference output for a View list spec. Numbering starts at 1 (UC 1, BR 1, Screen 1).
-UCs not written in this spec are referred to by name only (UC: Create Product,
+The spec refers to UCs it does not contain by name only (UC: Create Product,
 UC: View an existing Product).
 
 ---
@@ -13,7 +13,7 @@ UC: View an existing Product).
 | **Actor:** | All authenticated users. |
 | **Trigger:** | User clicks on "Product" in the left Navigation Pane. |
 | **Pre-condition:** | User logged in successfully as actor above. |
-| **Post-condition:** | The list of existing Products is displayed. |
+| **Post-condition:** | The system displays the list of existing Products. |
 
 **Activity Flows**
 
@@ -43,7 +43,7 @@ flowchart TD
 
 | Step | BR Code | Description |
 |---|---|---|
-| (2)<br>(2.1) | **BR 1** | <u>**Screen Displaying Rules:**</u><br>The system will load screen: <<cross reference to Product List screen>>.<br>- Data is retrieved as described in Data Source of the screen:<br>&nbsp;&nbsp;- If {Current Login User} has role "System Admin", display Product records with [Status] is "Active" or "Inactive".<br>&nbsp;&nbsp;- Otherwise, display Product records with [Status] is "Active" only.<br>- Records are sorted by [Product Code] in descending order.<br>- "Create" button is displayed only when {Current Login User} has role "System Admin".<br>- If there is no Product record to display, the table displays the text "No data found." |
+| (2)<br>(2.1) | **BR 1** | <u>**Screen Displaying Rules:**</u><br>The system will load screen: <<cross reference to Product List screen>>.<br>- The system retrieves data as described in Data Source of the screen:<br>&nbsp;&nbsp;- If {Current Login User} has role "System Admin", display Product records with [Status] is "Active" or "Inactive".<br>&nbsp;&nbsp;- Otherwise, display Product records with [Status] is "Active" only.<br>- The system sorts records by [Product Code] in descending order.<br>- The system displays "Create" button only when {Current Login User} has role "System Admin".<br>- If there is no Product record to display, the table displays the text "No data found." |
 
 ---
 
@@ -55,7 +55,7 @@ flowchart TD
   - Step 2: Click on module "Product" in Navigation Pane in the left.
 
 *Screen 1: Product List screen*
-Mockup: to be attached.
+Mockup: The BA will attach the mockup.
 
 | **Data Source** | Retrieve all "Product" records satisfying:<br>- If {Current Login User} has role "System Admin": [Status] is "Active" or "Inactive".<br>- Otherwise: [Status] is "Active". |
 |---|---|

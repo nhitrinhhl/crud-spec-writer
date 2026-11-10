@@ -6,7 +6,7 @@ defects; use "edit mode" and "update the current item".
 
 ## Output
 1. `UC <n>: Edit <Object>` — use-case-template.md
-2. `Edit <Object> Screen` — form-screen-template.md in edit mode (when fields are known)
+2. `Edit <Object> Screen` — form-screen-template.md in edit mode (when the user gave the fields)
 
 ## Header
 | Row | Pattern |
@@ -15,7 +15,7 @@ defects; use "edit mode" and "update the current item".
 | Actor | <Roles> |
 | Trigger | User clicks on "Edit" button on <<cross reference to <Object> Details screen>>. |
 | Pre-condition | User logged in successfully as actor above.<br>[Status] of the <Object> is "<Status>". |
-| Post-condition | <Object> is updated successfully. |
+| Post-condition | The system updates the <Object>. |
 
 ## Standard Activity Flows
 | Step | User | System |
@@ -27,14 +27,14 @@ defects; use "edit mode" and "update the current item".
 | (4.1) | | If validation fails, the system displays inline error messages; go back to step (3). |
 | (4.2) | | If validation passes, the system saves the changes, displays SCD n and loads <Object> Details screen. |
 | (5) | User clicks on "Cancel" button (alternative at step (3)). | |
-| (6) | | If there are unsaved changes, the system displays CFD 4; otherwise loads <Object> Details screen. |
+| (6) | | If user has changed any field, the system displays CFD 4; otherwise the system loads <Object> Details screen. |
 
 ## Standard Business Rules
 | Step | Rule |
 |---|---|
-| (2) | **Screen Displaying Rules:** The system will load screen: <<cross reference to Edit <Object> screen>> at the edit mode.<br>- All fields are populated with the current data of the <Object>.<br>- Read-only fields: [<Code>], [<Field>] (<reason>).<br>- Editable fields: as stated in screen description. |
-| (4)<br>(4.1) | **Validating Rules:** After user clicks on "Save" button, the system will validate all the mandatory fields as stated in screen description.<br>- If any mandatory field is left blank, under the corresponding field, display inline error message IEM 1 Please input in this field.<br>- <Format rules>.<br>- If [<Name>] already exists in another "<Object>" record (excluding the current one), display inline error message IEM 2 This name is already existed.<br>- Otherwise, go to step (4.2). |
-| (4.2) | **Updating Rules:** After passing the validation rules, the system will update the current <Object> as below:<br>- Save all changes.<br>- Refer to CBR1 to log basic audit trail.<br>- The system will display success dialog SCD n The <Object> has been updated.<br>- The system will load screen: <<cross reference to <Object> Details screen>>. |
+| (2) | **Screen Displaying Rules:** The system will load screen: <<cross reference to Edit <Object> screen>> at the edit mode.<br>- The system fills all fields with the current data of the <Object>.<br>- Read-only fields: [<Code>], [<Field>] (<reason>).<br>- Editable fields: as stated in screen description. |
+| (4)<br>(4.1) | **Validating Rules:** After user clicks on "Save" button, the system will validate all the mandatory fields as stated in screen description.<br>- If user leaves any mandatory field blank, the system displays inline error message IEM 1 Please input in this field. under the corresponding field.<br>- <Format rules>.<br>- If [<Name>] already exists in another "<Object>" record (excluding the current one), the system displays inline error message IEM 2 This name is already existed.<br>- Otherwise, go to step (4.2). |
+| (4.2) | **Updating Rules:** After passing the validation rules, the system will update the current <Object> as below:<br>- Save all changes.<br>- Refer to CBR1 to log basic audit trail.<br>- The system will display success dialog SCD n You have updated the <Object>.<br>- The system will load screen: <<cross reference to <Object> Details screen>>. |
 | (6) | **Confirmation Rules:** If user has changed any field, the system shows a confirmation message CFD 4 Are you sure you want to cancel?<br>- If User clicks on "Yes", discard the changes and load <<cross reference to <Object> Details screen>>.<br>- If User clicks on "No", close the dialog and stay on the current screen. |
 
 ## Checklist (cover each item or mark N/A)
@@ -49,6 +49,6 @@ defects; use "edit mode" and "update the current item".
 - [ ] Concurrent edit (record changed by another user) → EMSG or N/A
 
 ## Questions to ask if missing
-1. In which statuses can the object be edited, and by whom?
+1. In which statuses can users edit the object, and which users?
 2. Which fields become read-only after creation?
 3. After saving: go to details or list?

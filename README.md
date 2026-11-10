@@ -28,18 +28,21 @@ Input options:
 Examples:
 ```
 /crud-spec-writer
-Viết spec xem danh sách và thêm mới Supplier. Actor: Admin, Purchasing Staff. Menu "Suppliers".
-Cột: Supplier Code (link chi tiết), Supplier Name, Phone, Email, Status, Last Modified At.
-Sort Supplier Code giảm dần. Thêm mới: Supplier Name (bắt buộc, max 100, không trùng), ...
+Write the View list and Create spec for Supplier. Actors: Admin, Purchasing Staff. Menu "Suppliers".
+Columns: Supplier Code (link to details), Supplier Name, Phone, Email, Status, Last Modified At.
+Sort by Supplier Code descending. Create: Supplier Name (mandatory, max 100, unique), ...
 ```
 ```
 /crud-spec-writer
-Viết spec đầy đủ CRUD cho Supplier, code ở https://github.com/<org>/<repo>
+Write the full CRUD spec for Supplier, code at https://github.com/<org>/<repo>
 ```
 ```
-viết spec xóa Supplier
+write the delete spec for Supplier
 ```
-Add "cứ viết đi" to skip the questions (neutral defaults + `[TBC]`).
+Add "just write it" to skip the questions (neutral defaults + `[TBC]`).
+
+Writing rules: English only (spec, questions and replies) and active voice only
+(`scripts/check_active_voice.py` checks it).
 
 Output: a Word file in `~/Downloads` (`<Project>_<Object>_Use-Case-Specification.docx`), built on your
 company SRS template (`*System*Requirement*Specification*.docx`, kept local, never committed), plus the

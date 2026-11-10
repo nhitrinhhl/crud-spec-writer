@@ -15,7 +15,7 @@ Full worked example: `examples/product-view-list.md`.
 | Actor | <Roles as given by the user> |
 | Trigger | User clicks on "<Menu Item>" in the left Navigation Pane. |
 | Pre-condition | User logged in successfully as actor above. |
-| Post-condition | The list of existing <Objects> is displayed. |
+| Post-condition | The system displays the list of existing <Objects>. |
 
 ## Standard Activity Flows
 | Step | User | System |
@@ -28,9 +28,9 @@ Full worked example: `examples/product-view-list.md`.
 ## Standard Business Rules
 | Step | Rule |
 |---|---|
-| (2) | **Screen Displaying Rules:** The system will load screen: <<cross reference to <Object> List screen>>.<br>- Data is retrieved as described in Data Source of the screen.<br>- <Per-role visibility, one line per role>.<br>- Records are sorted as described in Default Sorting of the screen. |
-| (2.1) | (can be merged into the BR above) If there is no record to display, the table displays the text "<No <Object> found.>". |
-| (3) | Optional **Screen Displaying Rules** for action visibility: "<Button>" button is displayed only when {Current Login User} has role "<Role>". |
+| (2) | **Screen Displaying Rules:** The system will load screen: <<cross reference to <Object> List screen>>.<br>- The system retrieves data as described in Data Source of the screen.<br>- <Per-role visibility, one line per role>.<br>- The system sorts records as described in Default Sorting of the screen. |
+| (2.1) | (you may merge this into the BR above) If there is no record to display, the table displays the text "<No <Object> found.>". |
+| (3) | Optional **Screen Displaying Rules** for action visibility: The system displays "<Button>" button only when {Current Login User} has role "<Role>". |
 
 ## Checklist (cover each item or mark N/A)
 - [ ] Objective / Actor / Trigger / Pre-condition / Post-condition

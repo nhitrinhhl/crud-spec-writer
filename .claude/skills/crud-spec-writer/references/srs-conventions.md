@@ -16,7 +16,7 @@ Source: "<Customer Name>_<Project Name>_System Requirement Specification" v0.9 �
 | 9.1 Messages List | Error Message (EMSG), Inline Error Message (IEM), Confirmation Dialog (CFD), Success Dialog (SCD) |
 
 CRUD specs for a specific object go under "Manage Use Case" (UC n), and refer to CMUC
-behaviour where it is unchanged.
+behaviour where the object does not change it.
 
 ## 2. Notation
 
@@ -75,8 +75,8 @@ Always cite **code + text**, without quotes: `display inline error message IEM 1
 
 ### New codes
 - Next free codes in the template: **IEM 4, EMSG 6, CFD 6, SCD 6** — or continue from the numbers the user gives.
-- Patterns: `SCD n A new <Object> has been created.` / `SCD n The <Object> has been updated.` /
-  `SCD n The <Object> has been deleted.` / `CFD n Are you sure you want to disable this <Object>?`
+- Patterns: `SCD n You have created the <Object>.` / `SCD n You have updated the <Object>.` /
+  `SCD n You have deleted the <Object>.` (active voice) / `CFD n Are you sure you want to disable this <Object>?`
 - Reuse an existing code when the text fits (IEM 1 for blank mandatory, CFD 4 for cancel, CFD 5 for delete).
 - List every new code in a **New Messages** table at the end of the spec (Type | Code | Message).
 - Note: §6 "Common Messages Configuration" says the Informing Message closes after 10s, §9.1 says the Success Dialog closes after 5s. Use **SCD, 5s**.
@@ -105,8 +105,8 @@ Phrasing rules:
 ## 6. Common rules
 
 **CBR1 Logging Basic Audit Trail Rule** (SRS §3.4)
-- When the record is created: update [Created by] to [User ID] of {Current Login User}; update [Created at] to current date time.
-- When the record is created or updated: update [Last modified by] to [User ID] of {Current Login User}; update [Last modified at] to current date time.
+- When the system creates the record: update [Created by] to [User ID] of {Current Login User}; update [Created at] to current date time.
+- When the system creates or updates the record: update [Last modified by] to [User ID] of {Current Login User}; update [Last modified at] to current date time.
 
 Every Create / Update / Delete / Disable BR must contain: `Refer to CBR1 to log basic audit trail.`
 Optional workflow audit line (when the object keeps an [Audit Trail]): `Append to [Audit Trail] as: <Action> by {Current User Name} at {Current Date Time}.`
@@ -118,7 +118,7 @@ Unless the user states otherwise, listing screens follow these sections. Write
 
 | Section | Summary (for your understanding — do not paste into the spec) |
 |---|---|
-| View Columns Display | Text longer than the cell is cut with "…" + tooltip with full content; headers unsorted by default; unsorted/ascending/descending icons |
+| View Columns Display | The system cuts text longer than the cell with "…" and shows a tooltip with full content; headers unsorted by default; unsorted/ascending/descending icons |
 | Pagination | New search or page-size change → refresh, back to page 1; "<<" "<" disabled on page 1, ">>" ">" disabled on last page; 1 page still shows pagination; total records shown on the left; user can type the page number |
 | Search Component | Free text; "contain" logic across all presented columns; refresh table + pagination; blank keyword → reset to default view |
 | Bulk Action | First column is a checkbox; header checkbox selects current page only; selection kept across pages; Dropdown (Bulk Action / Export / Delete) or buttons (Delete / Export) enabled when ≥1 row selected |
@@ -156,19 +156,20 @@ Use when the object only needs standard CMUC behaviour.
 ## 9. Common self-check (run on every spec)
 
 - [ ] Output is English only; formal SRS phrasing.
+- [ ] Every sentence is in active voice (`scripts/check_active_voice.py` reports nothing).
 - [ ] Header table has all 5 rows: Objective, Actor, Trigger, Pre-condition, Post-condition.
 - [ ] Trigger names a quoted UI label and a screen cross reference (or menu path).
 - [ ] Pre-condition starts with "User logged in successfully as actor above."
-- [ ] Every Activity step that has system behaviour is cited by a BR; every BR cites an existing step.
+- [ ] A BR cites every Activity step that has system behaviour; every BR cites an existing step.
 - [ ] Step table and Mermaid flowchart match (same steps, same branches).
 - [ ] Each BR Description starts with an underlined bold rule type.
-- [ ] Every message is cited as code + text; new codes are in the New Messages table.
+- [ ] The spec cites every message as code + text; the New Messages table lists every new code.
 - [ ] Every data-changing BR says "Refer to CBR1 to log basic audit trail."
 - [ ] Every BR that ends the flow says which screen loads next.
-- [ ] Standard behaviour is referred to by section name, not repeated.
+- [ ] The spec refers to standard behaviour by section name and does not repeat it.
 - [ ] UC / BR / Screen numbers start at 1 and are sequential within the spec.
-- [ ] No role, field, status, value list or rule was taken from the SRS sample content or invented.
-- [ ] Every assumption is marked `[TBC]` and listed in Open Questions.
+- [ ] The spec takes no role, field, status, value list or rule from the SRS sample content and invents none.
+- [ ] The spec marks every assumption `[TBC]` and lists it in Open Questions.
 
 ## 10. Known defects in the SRS template — do NOT copy
 
@@ -197,7 +198,7 @@ Use these instead of inventing app-specific rules. They are valid spec text, not
 | Bulk Action | `N/A – this screen has no bulk action.` |
 | Empty state | `If there is no record to display, the table displays the text "No data found."` |
 | Date / number format | `Refer to Common field controls.` |
-| Mockup | `Mockup: to be attached.` |
-| Delete type | Must be asked — no neutral default (`[TBC]`). |
-| Entry point (menu name) | Must be asked — use `"<Objects>"` in the left Navigation Pane + `[TBC]`. |
-| Default status on create | Must be asked if the object has a status; otherwise N/A. |
+| Mockup | `Mockup: The BA will attach the mockup.` |
+| Delete type | Ask the user — no neutral default (`[TBC]`). |
+| Entry point (menu name) | Ask the user — use `"<Objects>"` in the left Navigation Pane + `[TBC]`. |
+| Default status on create | Ask the user if the object has a status; otherwise N/A. |

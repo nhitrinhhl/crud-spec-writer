@@ -16,7 +16,7 @@ Replace every `<...>`. Delete the guidance lines (starting with `>`) in the outp
 | **Actor:** | <Role 1>, <Role 2>. |
 | **Trigger:** | User clicks on "<Button>" on <<cross reference to <Screen Name> screen>>. |
 | **Pre-condition:** | User logged in successfully as actor above.<br>[<Field>] of the <Object> is "<Value>". |
-| **Post-condition:** | <Result, e.g. "A new Product is successfully created.">. |
+| **Post-condition:** | <Result in active voice, e.g. "The system creates a new Product.">. |
 
 > - Trigger for a menu entry: `User clicks on "<Menu Item>" in the left Navigation Pane.`
 > - Trigger for opening an item: `User selects to open an existing <Object> on <<cross reference to <Object> List screen>>.`
@@ -63,7 +63,7 @@ flowchart TD
 | Step | BR Code | Description |
 |---|---|---|
 | (2) | **BR <n>** | <u>**Screen Displaying Rules:**</u><br>The system will load screen: <<cross reference to <Screen Name> screen>>. |
-| (4)<br>(4.1) | **BR <n+1>** | <u>**Validating Rules:**</u><br>After user clicks on "Save" button, the system will validate all the mandatory fields as stated in screen description.<br>- If any mandatory field is left blank, under the corresponding field, display inline error message IEM 1 Please input in this field.<br>- Otherwise, go to step (4.2). |
+| (4)<br>(4.1) | **BR <n+1>** | <u>**Validating Rules:**</u><br>After user clicks on "Save" button, the system will validate all the mandatory fields as stated in screen description.<br>- If user leaves any mandatory field blank, the system displays inline error message IEM 1 Please input in this field. under the corresponding field.<br>- Otherwise, go to step (4.2). |
 | (4.2) | **BR <n+2>** | <u>**<Creating/Updating/Deleting/Disabling> Rules:**</u><br>After passing the validation rules, the system will …<br>- …<br>- Save all changes.<br>- Refer to CBR1 to log basic audit trail.<br>- The system will load screen: <<cross reference to <Screen Name> screen>>. |
 
 > - Description always starts with the underlined bold rule type, then a line break.

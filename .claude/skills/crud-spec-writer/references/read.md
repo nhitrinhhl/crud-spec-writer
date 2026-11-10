@@ -13,7 +13,7 @@ Base: SRS CMUC 3 "Read Item", UC 6 "View an existing Product", Case Detail Scree
 | Actor | <Roles> (or "All authenticated users.") |
 | Trigger | User selects to open an existing <Object> on <<cross reference to <Object> List screen>>. |
 | Pre-condition | User logged in successfully as actor above.<br>(+ visibility condition, e.g. "The <Object> is visible to the user as described in Data Source of <Object> List screen.") |
-| Post-condition | The detailed information of the selected <Object> is displayed. |
+| Post-condition | The system displays the details of the selected <Object>. |
 
 ## Standard Activity Flows
 | Step | User | System |
@@ -25,7 +25,7 @@ Base: SRS CMUC 3 "Read Item", UC 6 "View an existing Product", Case Detail Scree
 ## Standard Business Rules
 | Step | Rule |
 |---|---|
-| (2) | **Screen Displaying Rules:** The system will load screen: <<cross reference to <Object> Details screen>> of {Selected <Object>} at the view mode.<br>- All fields are read-only.<br>- "<Edit>" button is displayed only when {Current Login User} has role "<Role>" and [Status] of the <Object> is "<Status>".<br>- "<Delete/Disable>" button is displayed only when … |
+| (2) | **Screen Displaying Rules:** The system will load screen: <<cross reference to <Object> Details screen>> of {Selected <Object>} at the view mode.<br>- The system shows all fields as read-only.<br>- The system displays "<Edit>" button only when {Current Login User} has role "<Role>" and [Status] of the <Object> is "<Status>".<br>- The system displays "<Delete/Disable>" button only when … |
 
 ## Checklist (cover each item or mark N/A)
 - [ ] Trigger: open item from list (which column/link), and any other entry point (deep link, related screen)

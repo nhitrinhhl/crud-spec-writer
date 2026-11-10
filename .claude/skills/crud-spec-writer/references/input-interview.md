@@ -4,15 +4,15 @@ Use when the user has no source code to share, or after Mode A for what the code
 
 ## How to run it
 1. Invoke the Skill `superpowers:brainstorming` and follow its conversation rules:
-   - one question per message, a single plain sentence, in the user's language;
+   - one question per message, a single plain sentence, in English;
    - open questions first; offer a short menu only when the user is stuck or asks for options;
-   - when the user says "just guess" / "cứ đoán", propose a concrete value and say it is your guess;
+   - when the user says "just guess", propose a concrete value and say it is your guess;
    - play back each part in a short chunk as soon as it is understood, marking guesses.
 2. **Overrides — this skill wins over brainstorming on these points:**
    - Skip "Size the Work", "The Written Design", the builder check, the `docs/superpowers/specs/`
      location and the hand-off to `superpowers:writing-plans`.
    - The "full description" that needs approval is the **Input Summary** below, not a design document.
-   - After approval, return to SKILL.md step 4 (write the spec). Nothing else is built.
+   - After approval, return to SKILL.md step 4 (write the spec). Build nothing else.
    - If the user opts out of questions, use the neutral defaults in `srs-conventions.md` §11.
 3. Skip anything already known (from the request, from Mode A, or from earlier answers).
 4. Never ask about numbering, pagination, search, column display or CBR1 — those are standard.
@@ -39,11 +39,11 @@ Use when the user has no source code to share, or after Mode A for what the code
 Good question shapes (adapt to the object, never use sample-data names):
 - "Walk me through how someone opens the <Objects> list today — which menu do they click?"
 - "Does everyone who opens this list see the same <Objects>, or does someone see only part of them?"
-- "When a <Object> is deleted, what should happen to it — gone for good, or recoverable?"
+- "When someone deletes a <Object>, what should happen to it — gone for good, or recoverable?"
 
 ## Input Summary (play back before writing)
 
-Send this in one message, in the user's language, then ask what is wrong or missing.
+Send this in one message, in English, then ask what is wrong or missing.
 Write the spec only after the user approves it.
 
 ```

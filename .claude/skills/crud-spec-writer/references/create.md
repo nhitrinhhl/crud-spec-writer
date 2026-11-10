@@ -4,7 +4,7 @@ Base: SRS CMUC 2 "Create Item", UC 4 "Create Product", Create Case Screen.
 
 ## Output
 1. `UC <n>: Create <Object>` — use-case-template.md
-2. `Create <Object> Screen` — form-screen-template.md (when fields are known)
+2. `Create <Object> Screen` — form-screen-template.md (when the user gave the fields)
 
 ## Header
 | Row | Pattern |
@@ -13,7 +13,7 @@ Base: SRS CMUC 2 "Create Item", UC 4 "Create Product", Create Case Screen.
 | Actor | <Roles> |
 | Trigger | User clicks on "Create" button on <<cross reference to <Object> List screen>>. |
 | Pre-condition | User logged in successfully as actor above. |
-| Post-condition | A new <Object> is successfully created. |
+| Post-condition | The system creates a new <Object>. |
 
 ## Standard Activity Flows
 | Step | User | System |
@@ -25,16 +25,16 @@ Base: SRS CMUC 2 "Create Item", UC 4 "Create Product", Create Case Screen.
 | (4.1) | | If validation fails, the system displays inline error messages; go back to step (3). |
 | (4.2) | | If validation passes, the system creates the <Object>, displays SCD n and loads <Object> List screen. |
 | (5) | User clicks on "Cancel" button (alternative at step (3)). | |
-| (6) | | The system displays CFD 4 if there are unsaved changes; otherwise loads the previous screen. |
+| (6) | | The system displays CFD 4 if user has changed any field; otherwise the system loads the previous screen. |
 
-Steps (5)–(6) are optional — include them if Cancel behaviour must be specified.
+Steps (5)–(6) are optional — include them if the user wants the Cancel behaviour in the spec.
 
 ## Standard Business Rules
 | Step | Rule |
 |---|---|
 | (2) | **Screen Displaying Rules:** The system will load screen: <<cross reference to Create <Object> screen>> at the new mode.<br>- Default values: <field = value>. |
-| (4)<br>(4.1) | **Validating Rules:** After user clicks on "Save" button, the system will validate all the mandatory fields as stated in screen description.<br>- If any mandatory field is left blank, under the corresponding field, display inline error message IEM 1 Please input in this field.<br>- If [<Field>] is not in the format <format>, display inline error message IEM n Invalid <Field> format.<br>- If [<Name>] already exists in "<Object>", display inline error message IEM 2 This name is already existed. (or IEM 3 You must specify a unique value for this field.)<br>- If [<Field A>] is "<Value>", [<Field B>] is mandatory.<br>- Otherwise, go to step (4.2). |
-| (4.2) | **Creating Rules:** After passing the validation rules, the system will create a new <Object> as below:<br>- Save all inputted data.<br>- [<Code>] is generated as this format: <Prefix>XX where XX is auto increasing number.<br>- Update [Status] as "<Default Status>".<br>- Save all changes.<br>- Refer to CBR1 to log basic audit trail.<br>- The system will display success dialog SCD n A new <Object> has been created.<br>- The system will load screen: <<cross reference to <Object> List screen>>. |
+| (4)<br>(4.1) | **Validating Rules:** After user clicks on "Save" button, the system will validate all the mandatory fields as stated in screen description.<br>- If user leaves any mandatory field blank, the system displays inline error message IEM 1 Please input in this field. under the corresponding field.<br>- If [<Field>] does not match the format <format>, the system displays inline error message IEM n Invalid <Field> format.<br>- If [<Name>] already exists in "<Object>", the system displays inline error message IEM 2 This name is already existed. (or IEM 3 You must specify a unique value for this field.)<br>- If [<Field A>] is "<Value>", the system requires [<Field B>].<br>- Otherwise, go to step (4.2). |
+| (4.2) | **Creating Rules:** After passing the validation rules, the system will create a new <Object> as below:<br>- Save all inputted data.<br>- The system generates [<Code>] in this format: <Prefix>XX, where XX is an auto-increasing number.<br>- The system updates [Status] to "<Default Status>".<br>- Save all changes.<br>- Refer to CBR1 to log basic audit trail.<br>- The system will display success dialog SCD n You have created the <Object>.<br>- The system will load screen: <<cross reference to <Object> List screen>>. |
 | (6) | **Confirmation Rules:** If user has changed any field, the system shows a confirmation message CFD 4 Are you sure you want to cancel?<br>- If User clicks on "Yes", discard the inputted data and load the previous screen.<br>- If User clicks on "No", close the dialog and stay on the current screen. |
 
 ## Checklist (cover each item or mark N/A)

@@ -11,7 +11,7 @@ Note: UC 8 BR 18 cites the wrong message (CFD 3) and a broken reference — do n
 | Title | UC <n>: Delete an existing <Object> | UC <n>: Disable an existing <Object> |
 | Rule type | **Deleting Rules:** | **Disabling Rules:** |
 
-The delete type MUST be stated explicitly — CMUC 5 leaves three options open
+The spec MUST state the delete type explicitly — CMUC 5 leaves three options open
 ("move to the Recycle Bin / flag the document as deleted / delete the item permanently").
 If the user has not said, ask; if they say proceed, use "flag as deleted (soft delete) [TBC]".
 
@@ -37,9 +37,9 @@ If the user has not said, ask; if they say proceed, use "flag as deleted (soft d
 | Step | Rule |
 |---|---|
 | (2) | **Confirmation Rules:** The system shows a confirmation message CFD 5 Are you sure you want to delete this item? with two buttons "OK" and "Cancel". (Disable: new code, e.g. CFD n Are you sure you want to disable this <Object>?)<br>- If User clicks on "OK", go to BR <n+1>.<br>- If User clicks on "Cancel", the system closes the confirmation dialog and does nothing. |
-| (4) | **Deleting Rules:** If user clicks on the "OK" button from the confirmation dialog, the system will:<br>- <Move the selected <Object> to the Recycle Bin. \| Update [Is Deleted] of the selected <Object> to "Yes"; the record is no longer displayed in any screen. \| Delete the selected <Object> permanently.><br>- <Impact on related records, e.g. update [Status] of all open <Related Object> related to this <Object> to "Closed" (open = [Status] is not "Closed").><br>- Save all changes.<br>- Refer to CBR1 to log basic audit trail.<br>- The system will display success dialog SCD n The <Object> has been deleted.<br>- The system will load screen: <<cross reference to <Object> List screen>>. |
+| (4) | **Deleting Rules:** If user clicks on the "OK" button from the confirmation dialog, the system will:<br>- <Move the selected <Object> to the Recycle Bin. \| Update [Deleted Flag] of the selected <Object> to "Yes"; the system no longer displays the record on any screen. \| Delete the selected <Object> permanently.><br>- <Impact on related records, e.g. update [Status] of all open <Related Object> related to this <Object> to "Closed" (open = [Status] is not "Closed").><br>- Save all changes.<br>- Refer to CBR1 to log basic audit trail.<br>- The system will display success dialog SCD n You have deleted the <Object>.<br>- The system will load screen: <<cross reference to <Object> List screen>>. |
 | (4) | **Disabling Rules:** (Disable variant) If user clicks on the "OK" button from the confirmation dialog, the system will:<br>- Update [Status] of the current <Object> to "Inactive".<br>- <Impact on related records>.<br>- Save all changes.<br>- Refer to CBR1 to log basic audit trail.<br>- The system will load screen: <<cross reference to <Object> List screen>>. |
-| (2) | Optional **Validating Rules:** before confirmation — if the <Object> is referenced by <Related Object> with <condition>, display error message EMSG n <text> and stop. |
+| (2) | Optional **Validating Rules:** before confirmation — if <Related Object> with <condition> refers to the <Object>, the system displays error message EMSG n <text> and stop. |
 
 ## Checklist (cover each item or mark N/A)
 - [ ] Delete or Disable decided (and why)
@@ -57,4 +57,4 @@ If the user has not said, ask; if they say proceed, use "flag as deleted (soft d
 ## Questions to ask if missing
 1. Delete or disable? If delete: Recycle Bin, soft-delete flag, or permanent?
 2. What happens to related records?
-3. Can it be deleted when referenced? If not, which error message?
+3. Can the user delete it while other records refer to it? If not, which error message does the system show?
